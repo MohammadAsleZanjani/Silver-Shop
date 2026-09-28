@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id
+  cashBalance   Decimal       @db.Decimal(20, 4)
+  silverBalance Decimal       @db.Decimal(20, 8)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  orders       Order[]
+  transactions Transaction[]
+}
+
+model Market {
+  id               String   @id
+  buyPricePerGram  Decimal  @db.Decimal(20, 4)
+  sellPricePerGram Decimal  @db.Decimal(20, 4)
+  silverInventory  Decimal  @db.Decimal(20, 8)
+  updatedAt        DateTime @updatedAt
+  createdAt        DateTime @default(now())
+}
+
+model Order {
+  id             String    @id @default(uuid())
+  idempotencyKey String    @unique
+  userId         String
+  type           OrderType
+
+  inputAmount Decimal? @db.Decimal(20, 4)
+  inputWeight Decimal? @db.Decimal(20, 8)
+
+  weight       Decimal @db.Decimal(20, 8)
+  pricePerGram Decimal @db.Decimal(20, 4)
+  totalAmount  Decimal @db.Decimal(20, 4)
+
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+}
+
+model Transaction {
+  id           String          @id @default(uuid())
+  userId       String
+  type         TransactionType
+  weight       Decimal         @db.Decimal(20, 8)
+  pricePerGram Decimal         @db.Decimal(20, 4)
+  totalAmount  Decimal         @db.Decimal(20, 4)
+  createdAt    DateTime        @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@index([createdAt])
+}
+
+enum OrderType {
+  BUY
+  SELL
+}
+
+enum TransactionType {
+  BUY
+  SELL
+}
