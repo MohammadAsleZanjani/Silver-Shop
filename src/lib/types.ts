@@ -32,6 +32,28 @@ export type MarketDto = {
   updatedAt: string;
 };
 
+export type GtaQuoteDto = {
+  source: "gta";
+  buyPricePerGram: string;
+  sellPricePerGram: string;
+  purity: "990";
+  unit: "gram";
+  currency: "toman";
+  spreadFromFeed: boolean;
+  quoteFetchedAt: string;
+  live: {
+    price_990: string;
+    price_925: string | null;
+    mesghal: string | null;
+    troy_ounce_usd: string | null;
+    change_percent: number | null;
+    is_bullish: boolean | null;
+    updated_at: string | null;
+    updated_at_jalali: string | null;
+    stale: boolean;
+  };
+};
+
 export type PaginationDto = {
   page: number;
   limit: number;

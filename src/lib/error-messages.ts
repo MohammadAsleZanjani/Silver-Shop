@@ -5,6 +5,8 @@ export const ERROR_MESSAGES: Record<string, string> = {
   INSUFFICIENT_SILVER_BALANCE: "موجودی نقره شما برای این فروش کافی نیست.",
   INSUFFICIENT_MARKET_SILVER: "موجودی نقره بازار برای این خرید کافی نیست.",
   PRICE_UNAVAILABLE: "قیمت نقره در حال حاضر در دسترس نیست. لطفاً دوباره تلاش کنید.",
+  EXTERNAL_PRICE_UNAVAILABLE:
+    "دریافت قیمت از سرویس GTA انجام نشد. اتصال را بررسی کنید یا قیمت را دستی وارد کنید.",
   TRANSACTION_NOT_FOUND: "معامله مورد نظر پیدا نشد.",
   ORDER_NOT_FOUND: "سفارش مورد نظر پیدا نشد.",
   INVALID_IDEMPOTENCY_KEY: "کلید درخواست نامعتبر است. لطفاً دوباره تلاش کنید.",

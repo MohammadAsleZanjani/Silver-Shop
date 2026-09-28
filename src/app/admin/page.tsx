@@ -18,7 +18,8 @@ export default async function AdminPage() {
         <div>
           <h1 className="text-2xl font-semibold">پنل مدیریت بازار</h1>
           <p className="mt-1 text-sm text-zinc-600">
-            قیمت خرید، قیمت فروش و موجودی نقره را تنظیم کنید. این نسخه احراز هویت ندارد.
+            قیمت را دستی وارد کنید یا از API جی‌تی‌ای بگیرید. موجودی نقره همچنان دستی است. این نسخه
+            احراز هویت ندارد.
           </p>
         </div>
         <AdminDashboard

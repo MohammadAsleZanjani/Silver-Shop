@@ -22,6 +22,10 @@ export const marketUpdateSchema = z.object({
   silverInventory: z.union([z.string(), z.number()]),
 });
 
+export const gtaApplySchema = z.object({
+  silverInventory: z.union([z.string(), z.number()]).optional(),
+});
+
 export function parseIdempotencyKey(value: string | null): string {
   if (!value || !UUID_PATTERN.test(value.trim())) {
     throw new AppError(
