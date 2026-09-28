@@ -1,7 +1,7 @@
-import dns from "node:dns";
 import { z } from "zod";
 import {
-  GTA_FETCH_TIMEOUT_MS,
+  GTA_GOLDAB_TIMEOUT_MS,
+  GTA_LIVE_TIMEOUT_MS,
   GTA_MESGHAL_GRAMS,
   GTA_SACHME_TITLE,
   GTA_SILVER_GOLDAB_URL,
@@ -11,8 +11,6 @@ import { Decimal, toDecimal } from "@/lib/decimal";
 import { AppError, ErrorCode } from "@/lib/errors";
 import { serializeMoney, type GtaQuoteDto } from "@/lib/types";
 import { getMarket, updateMarket } from "@/services/market.service";
-
-dns.setDefaultResultOrder("ipv4first");
 
 export const gtaLiveSchema = z.object({
   price_990: z.number().positive(),
@@ -111,8 +109,8 @@ export function buildGtaQuote(
 
 export async function fetchGtaQuote(): Promise<MappedGtaQuote> {
   const [liveResult, goldabResult] = await Promise.all([
-    fetchJson(GTA_SILVER_LIVE_URL, GTA_FETCH_TIMEOUT_MS),
-    fetchJson(GTA_SILVER_GOLDAB_URL, GTA_FETCH_TIMEOUT_MS).catch(() => null),
+    fetchJson(GTA_SILVER_LIVE_URL, GTA_LIVE_TIMEOUT_MS),
+    fetchJson(GTA_SILVER_GOLDAB_URL, GTA_GOLDAB_TIMEOUT_MS).catch(() => null),
   ]);
 
   const liveParsed = gtaLiveSchema.safeParse(liveResult);

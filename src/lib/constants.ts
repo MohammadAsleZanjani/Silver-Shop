@@ -13,4 +13,5 @@ export const GTA_SILVER_GOLDAB_URL =
   process.env.GTA_SILVER_GOLDAB_URL ?? "https://gtasilver.com/silver-price/goldab-feed";
 export const GTA_MESGHAL_GRAMS = "4.6082";
 export const GTA_SACHME_TITLE = "ساچمه ایرانی";
-export const GTA_FETCH_TIMEOUT_MS = 10_000;
+export const GTA_LIVE_TIMEOUT_MS = 12_000;
+export const GTA_GOLDAB_TIMEOUT_MS = 4_000;
