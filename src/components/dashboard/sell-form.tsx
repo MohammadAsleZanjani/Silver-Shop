@@ -41,6 +41,7 @@ export function SellForm({
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    event.stopPropagation();
     const normalized = toEnglishDigits(weight);
     if (!normalized || Number(normalized) <= 0) {
       setLocalError("وزن باید بزرگ‌تر از صفر باشد.");
@@ -65,7 +66,7 @@ export function SellForm({
         <CardTitle>فروش نقره</CardTitle>
         <CardDescription>وزن نقره را به گرم وارد کنید. مبلغ تقریبی همان لحظه محاسبه می‌شود.</CardDescription>
       </CardHeader>
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-4" method="dialog" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <Label htmlFor="sell-weight">وزن نقره</Label>
           <Input

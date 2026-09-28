@@ -39,6 +39,7 @@ export function BuyForm({
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    event.stopPropagation();
     const normalized = toEnglishDigits(amount);
     if (!normalized || Number(normalized) <= 0) {
       setLocalError("مبلغ باید بزرگ‌تر از صفر باشد.");
@@ -59,7 +60,7 @@ export function BuyForm({
         <CardTitle>خرید نقره</CardTitle>
         <CardDescription>مبلغ را به تومان وارد کنید. وزن تقریبی همان لحظه محاسبه می‌شود.</CardDescription>
       </CardHeader>
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-4" method="dialog" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <Label htmlFor="buy-amount">مبلغ خرید</Label>
           <Input

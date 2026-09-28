@@ -46,5 +46,6 @@ export function formatDateTime(iso: string): string {
   return new Intl.DateTimeFormat("fa-IR", {
     dateStyle: "medium",
     timeStyle: "short",
+    timeZone: "UTC",
   }).format(new Date(iso));
 }

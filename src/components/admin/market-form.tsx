@@ -25,6 +25,7 @@ export function MarketForm({
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    event.stopPropagation();
     setSubmitting(true);
     setMessage(null);
     try {
@@ -54,7 +55,7 @@ export function MarketForm({
         <CardTitle>تنظیمات بازار</CardTitle>
         <CardDescription>قیمت خرید، قیمت فروش و موجودی نقره بازار را مشخص کنید.</CardDescription>
       </CardHeader>
-      <form className="grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
+      <form className="grid gap-4 sm:grid-cols-2" method="dialog" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <Label htmlFor="buy-price">قیمت خرید هر گرم</Label>
           <Input
