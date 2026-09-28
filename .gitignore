@@ -49,3 +49,5 @@ next-env.d.ts
 # local artifacts
 /uploads
 /agent-tools
+.pglite-data
+.pglite-test
